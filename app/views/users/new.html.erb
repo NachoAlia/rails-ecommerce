@@ -1,0 +1,14 @@
+<h1>Registrarse</h1>
+<%=render 'userErrors'%>
+<%= form_for @user do |f|%>
+  <%= f.label :firstname%><br>
+  <%= f.text_field :firstname%><br>
+  <%= f.label :lastname%><br>
+  <%= f.text_field :lastname%><br>
+  <%= f.label :email%><br>
+  <%= f.text_field :email%><br>
+  <%= f.label :password%><br>
+  <%= f.password_field :password%><br>
+  <%= f.submit %>
+<%end%>
+<%= button_to 'Volver', '/', method: :get %>

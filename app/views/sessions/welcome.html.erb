@@ -1,0 +1,8 @@
+<h1>Inicio</h1>
+<% if logged_in? %>
+    <h1>You are Logged In, <%= current_user.firstname %></h1>
+    <%= button_to 'logout', '/logout', method: :delete %>
+<%else%>
+  <%= button_to "Login", '/login', method: :get%>
+  <%= button_to "Sing Up", '/users/new', method: :get%>
+<%end%>
