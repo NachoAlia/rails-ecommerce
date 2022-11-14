@@ -22,6 +22,15 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.11'
 
+# Bootstrap 4
+gem 'bootstrap', '~> 4.4.1'
+
+# Popper_js
+gem 'popper_js', '~> 1.16'
+
+# Jquery-rails
+gem 'jquery-rails', '~> 4.3.5'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
