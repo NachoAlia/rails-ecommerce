@@ -1,0 +1,46 @@
+<div class="container">
+  <%= form_with model: @item, local:true, multipart: true, class:"form-row" do |form| %>
+    <% if @item.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <div id="error_explanation">
+          <%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:
+        <ul>
+          <% @item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="mb-3">
+          <%= form.label :name, { class: "form-label"} %>
+          <%= form.text_field :name, { class: "form-control", placeholder: "Item Name" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :description, { class: "form-label"} %>
+          <%= form.text_field :description, { class: "form-control", placeholder: "Description" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :priceUnit, { class: "form-label"} %>
+          <%= form.text_field :priceUnit, { class: "form-control", placeholder: "Price" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :stockAmount, { class: "form-label"} %>
+          <%= form.text_field :stockAmount, { class: "form-control", placeholder: "Stock Amount" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :available, { class: "form-label"} %>
+          <%= form.select :available, [["Yes", 1], ["No", 0]], {class: "form-control"}, selected: "Yes",class: "form-control"%>
+        </div>
+        <div class="mb-3">
+          <%= form.label :image_url, { class: "form-label"} %>
+          <%= form.file_field :image_url, {class:"form-control-file"} %>
+        </div>
+        <%= form.submit class:"btn btn-primary"%>
+      </div>
+    </div>
+  <% end %>
+</div>

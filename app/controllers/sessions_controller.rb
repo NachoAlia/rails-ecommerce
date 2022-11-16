@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create, :welcome]
+  skip_before_action :authorized, only: [:new, :create, :welcome, :destroy]
   def new
   end
 
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     @user = nil
-    redirect_to '/welcome'
+    redirect_to '/login'
   end
   def welcome
   end

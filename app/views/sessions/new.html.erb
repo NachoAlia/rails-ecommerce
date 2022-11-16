@@ -1,10 +1,20 @@
-<h1>Iniciar sesión</h1>
-<%=render 'sessionErrors'%>
-<%= form_tag '/login' do %>
-<%= label_tag :email%>
-<%= text_field_tag :email %><br>
-<%= label_tag :password%>
-<%= password_field_tag :password%><br>
-<%= submit_tag "Iniciar sesión", class:"btn btn-primary"%>
-<%end%>
-<%= button_to 'Volver', '/', method: :get %>
+<%=render 'navFrontStore'%>
+<div class="container">
+  <h3>Iniciar sesión</h3>
+  <%=render 'sessionErrors'%>
+  <%= form_tag '/login', html: { class: 'form'}  do %>
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= label_tag :email%>
+        <%= text_field_tag :email,nil, class: 'form-control' %><br>
+      </div>
+      <div class="mb-3">
+        <%= label_tag :password%>
+        <%= password_field_tag :password,nil, class: 'form-control'%><br>
+      </div>
+      <%= submit_tag "Iniciar sesión", class:"btn btn-primary"%>
+    </div>
+  </div>
+  <%end%>
+</div>

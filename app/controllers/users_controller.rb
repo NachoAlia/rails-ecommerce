@@ -6,12 +6,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(params.require(:user).permit(:firstname,:lastname, :email, :password))
-    if @user
-      render 'new'
-    else
-      session[:user_id] = @user.id
-      redirect_to '/welcome'
-    end
+    session[:user_id] = @user.id
+    redirect_to '/welcome'
 
   end
 end

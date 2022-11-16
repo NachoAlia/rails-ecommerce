@@ -1,0 +1,28 @@
+<h1>Listing Items</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Available</th>
+    <th>Image</th>
+    <th>Options</th>
+    <th><%= button_to '+', new_item_path, method: :get, class:"btn btn-primary" %></th>
+    <th><%= button_to '<', '/welcome', method: :get, class:"btn btn-secondary" %></th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.description %></td>
+      <td><%= item.priceUnit %></td>
+      <td><%= item.stockAmount %></td>
+      <td><%= item.available %></td>
+      <td><%= image_tag item.image_url, width:50 if item.image_url.attached? %></td>
+      <td><%= link_to 'Show', item_path(item) %></td>
+      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Delete', item_path(item), method: :delete, data: {confirm: "¿Estas seguro de eliminar el item: #{item.name}?"} %></td>
+    </tr>
+  <% end %>
+</table>
+<br><br><hr>

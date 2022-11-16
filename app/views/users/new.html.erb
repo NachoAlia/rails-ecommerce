@@ -1,14 +1,29 @@
-<h1>Registrarse</h1>
+<%=render 'navFrontStore'%>
 <%=render 'userErrors'%>
-<%= form_for @user do |f|%>
-  <%= f.label :firstname%><br>
-  <%= f.text_field :firstname%><br>
-  <%= f.label :lastname%><br>
-  <%= f.text_field :lastname%><br>
-  <%= f.label :email%><br>
-  <%= f.text_field :email%><br>
-  <%= f.label :password%><br>
-  <%= f.password_field :password%><br>
-  <%= f.submit %>
-<%end%>
-<%= button_to 'Volver', '/', method: :get %>
+<div class="container">
+  <h3>Registrarse</h3>
+  <%= form_with model: @user, local:true, class:"form" do |form| %>
+    <div class="card">
+      <div class="card-body">
+        <div class="mb-3">
+          <%= form.label :firstname, { class: "form-label"} %>
+          <%= form.text_field :firstname, { class: "form-control", placeholder: "First Name" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :lastname, { class: "form-label"} %>
+          <%= form.text_field :lastname, { class: "form-control", placeholder: "Last Name" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :email, { class: "form-label"} %>
+          <%= form.text_field :email, { class: "form-control", placeholder: "Email" } %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :password, { class: "form-label"} %>
+          <%= form.password_field :password, { class: "form-control", placeholder: "Password" } %>
+        </div>
+
+        <%= form.submit class:"btn btn-primary"%>
+      </div>
+    </div>
+  <% end %>
+</div>
