@@ -13,7 +13,14 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
+
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+@font-face {
+  font-family: "bootstrap-icons";
+  src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
+    font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+}
 
  body {
      margin: 0;
@@ -31,4 +38,7 @@
      margin-left:  auto;
      text-align: center;
      width: 500px;
+ }
+ .ml-6 {
+   margin-left: ($spacer * 3) !important;
  }

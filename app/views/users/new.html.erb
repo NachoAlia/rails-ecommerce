@@ -1,4 +1,4 @@
-<%=render 'navFrontStore'%>
+<%=render 'welcome/navFrontStore'%>
 <%=render 'userErrors'%>
 <div class="container">
   <h3>Registrarse</h3>
@@ -24,6 +24,7 @@
 
         <%= form.submit class:"btn btn-primary"%>
       </div>
+      <%= link_to 'Volver', '/', method: :get %>
     </div>
   <% end %>
 </div>

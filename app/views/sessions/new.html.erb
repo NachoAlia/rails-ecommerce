@@ -1,4 +1,4 @@
-<%=render 'navFrontStore'%>
+<%=render 'welcome/navFrontStore'%>
 <div class="container">
   <h3>Iniciar sesión</h3>
   <%=render 'sessionErrors'%>
@@ -15,6 +15,7 @@
       </div>
       <%= submit_tag "Iniciar sesión", class:"btn btn-primary"%>
     </div>
+    <%= link_to 'dont have an account?', '/users/new', method: :get %>
   </div>
   <%end%>
 </div>

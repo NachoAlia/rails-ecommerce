@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :welcome, :destroy]
   def new
+    #redirect_to '/welcome' if !session[:user_id].nil?
   end
 
   def create

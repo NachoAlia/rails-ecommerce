@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   def authorized
     redirect_to '/login' unless logged_in?
   end
+  
   def isAdmin?
     if logged_in?
       return current_user.admin
