@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def new
+    session[:user_id] = nil
     @user = User.new
   end
 

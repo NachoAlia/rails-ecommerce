@@ -1,13 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid ">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="/welcome">Logo</a>
     </div>
     <div class="navbar-nav navbar-right">
       <ul class="nav navbar-nav">
 
         <%if logged_in?%>
-          <li><button class="btn btn-lg bi bi-cart-check-fill mt-1 " name="button"><span class="badge badge-light">0</span></button></li>
+          <li>
+            <%= button_to '/cart', method: :get, class:'btn btn-lg mt-1' do %>
+              <span class="bi bi-gift"></span>
+              <span class="badge badge-light">0</span>
+            <% end %>
+          </li>
+          <li>
+            <%= button_to '/cart', method: :get, class:'btn btn-lg mt-1' do %>
+              <span class="bi bi-cart-check-fill"></span>
+              <span class="badge badge-light"><%=current_cart.items.count%></span>
+            <% end %>
+
+          </li>
           <li>
           <div class="dropdown">
             <button class="btn btn-lg bi bi-person-fill dropdown-toggle mt-1 mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,6 +29,7 @@
               <%= button_to 'Backstore', backstore_path, method: :get, class:'dropdown-item' if isAdmin?%>
               <%= button_to 'logout', logout_path, method: :delete, class:'dropdown-item'%>
             </div>
+
         </div>
 
         </li>

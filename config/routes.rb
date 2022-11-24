@@ -18,6 +18,10 @@ Rails.application.routes.draw do
    get 'welcome', to: 'welcome#index'
    get 'backstore', to: 'backstore#index'
    get 'items', to: 'items#index'
+   get 'cart', to: 'carts#index'
+   post 'addItem', to: 'carts#addItem'
+   post 'deleteItem', to: 'carts#deleteItem'
+   post 'emptyCart', to: 'carts#emptyCart'
   #root 'welcome#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

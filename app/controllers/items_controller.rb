@@ -40,6 +40,12 @@ class ItemsController < ApplicationController
     @item = findItem()
   end
 
+  def toggleAvailable
+    @item = findItem()
+    @item.available = false if @item.stockAmount == 0
+    @item.save
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :description,

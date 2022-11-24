@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <%= form_with model: @item, local:true, multipart: true, class:"form-inline" do |form| %>
+
+  <div class="form-row">
+    <div class="col-4">
+
+      <%= form.number_field :cant, in: 0..item.stockAmount, step: 1, class: "form-control-sm"%>
+
+    </div>
+    <div class="col">
+    <%= form.submit 'Add to order', class:'btn btn-sm btn-primary' %>
+    <% end %>
+    </div>
+
+  </div>
+
+</div>

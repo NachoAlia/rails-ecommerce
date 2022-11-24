@@ -1,0 +1,35 @@
+<%=render 'welcome/navFrontStore'%>
+<h1>Cart Items</h1>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Amount</th>
+    <th>Total</th>
+    <th>Action</th>
+  </tr>
+  <% @cart.cart_items.each do |row| %>
+  <%itemActual = @cart.items.select{|item| item.id = row.item_id}.first %>
+    <tr>
+      <td><%= itemActual.name %></td>
+      <td><%= itemActual.description %></td>
+      <td><%= itemActual.priceUnit %></td>
+      <td><%= row.amount %></td>
+      <td><%= row.total %></td>
+      <td>
+        <%=form_tag '/deleteItem' do%>
+          <%= hidden_field_tag :item_id, itemActual.id %>
+          <%= hidden_field_tag :cant, row.amount %>
+          <%= submit_tag 'delete', class:'btn btn-sm btn-primary' %>
+        <%end%>
+      </td>
+    </tr>
+  <% end %>
+  <h1>Total:<%=@cart.totalPrice%></h1>
+  <%if @cart.items.count>0%>
+    <%= button_to 'Generate Order', items_path, method: :get, class:'btn btn-success'%>
+    <%= button_to 'Empty Cart', '/emptyCart', method: :post, class:'btn btn-danger'%>
+  <%end%>
+</table>
+<br><br><hr>

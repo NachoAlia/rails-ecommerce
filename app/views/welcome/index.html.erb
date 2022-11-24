@@ -8,12 +8,42 @@
     <div class="card" style="width: 18rem; margin-top:50px; ">
       <%= image_tag item.image_url, class:'card-image-top mx-auto', style:'height:100%; width:200px;'  if item.image_url.attached? %>
       <div class="card-body">
-        <h5 class="card-title"><%= item.name %></h5>
+        <h5 class="card-title"><%= item.name %><%= item.id %></h5>
         <p class="card-text"><%="Description: #{item.description}"%></p>
         <p class="card-text"><%="Price: #{item.priceUnit}"%></p>
-        <p class="card-text"><%= button_to 'Add to order', '/', method: :get, class:'btn btn-sm btn-primary' if item.available%></p>
-        <p class="card-text"><%="Not available" if !item.available %></p>
+        <%if item.available%>
+        <div class="container-fluid">
 
+
+
+
+          <%if !current_cart.items.include?item%>
+          <%= form_tag '/addItem', html:{class:'form-inline'} do %>
+
+          <div class="form-row">
+            <div class="col-4">
+
+              <%= number_field_tag :cant,1, in: 1..item.stockAmount, step: 1 , class: 'form-control form-control-sm'%>
+              <%= hidden_field_tag :item_id, item.id %>
+            </div>
+            <div class="col-4 mt-1">
+              <p>of: <%=item.stockAmount%></p>
+            </div>
+            <div class="col-1">
+              <%= submit_tag 'Add', class:'btn btn-sm btn-primary' %>
+
+            </div>
+            <% end %>
+          </div>
+          <%else%>
+          <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' %>
+          <%end%>
+        </div>
+
+        <%else%>
+          <p class="card-text"><%="Not available"%></p>
+            <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' if current_cart.items.include?item %>
+        <%end%>
       </div>
     </div>
   </div>

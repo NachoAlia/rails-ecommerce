@@ -1,13 +1,15 @@
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :welcome, :destroy]
   def new
-    #redirect_to '/welcome' if !session[:user_id].nil?
+    session[:user_id] = nil
+    @user = nil
   end
 
   def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      createCart
       redirect_to '/welcome'
     else
       if(params[:email].empty? || params[:password].empty?)
@@ -24,11 +26,16 @@ class SessionsController < ApplicationController
     @user = nil
     redirect_to '/welcome'
   end
+
   def destroy
     session[:user_id] = nil
     @user = nil
     redirect_to '/login'
   end
   def welcome
+  end
+  private
+  def createCart
+    @user.create_cart() if @user.cart.nil?
   end
 end
