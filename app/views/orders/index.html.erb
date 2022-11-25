@@ -1,0 +1,23 @@
+<%=render 'welcome/navFrontStore'%>
+<h1><%= current_user.firstname %> orders </h1>
+<table class="table">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Address</th>
+    <th>Total</th>
+    <th>State</th>
+    <th>Option</th>
+  </tr>
+  <%@orders.each do |row, order| %>
+    <tr>
+      <td><%= current_user.firstname %></td>
+      <td><%= current_user.lastname %></td>
+      <td><%= row.address %></td>
+      <td><%= row.totalPrice%></td>
+      <td><%= row.stateString %></td>
+      <td><%= link_to 'Show Details' %></td>
+    </tr>
+  <% end %>
+</table>
+<br><br><hr>

@@ -1,0 +1,32 @@
+<%=render 'welcome/navFrontStore'%>
+<div class="container">
+  <%if current_cart.items.count > 0%>
+  <%= form_with model: @order, local:true, class:"form" do |form| %>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:
+      <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+    <div class="card">
+      <div class="card-body">
+        <div class="mb-4">
+          <%= form.label :address, { class: "form-label"} %>
+          <%= form.hidden_field :user_id, value:current_user.id %>
+          <%= form.text_field :address, { class: "form-control", placeholder: "Address" } %>
+          <%= form.hidden_field :state, value:0 %>
+        </div>
+        <%= form.submit class:"btn btn-primary"%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%else%>
+<h1>El carrito esta vacio </h1><%= link_to 'Volver', '/welcome', method: :get%>
+<%end%>

@@ -8,9 +8,9 @@
 
         <%if logged_in?%>
           <li>
-            <%= button_to '/cart', method: :get, class:'btn btn-lg mt-1' do %>
+            <%= button_to '/orders', method: :get, class:'btn btn-lg mt-1' do %>
               <span class="bi bi-gift"></span>
-              <span class="badge badge-light">0</span>
+              <span class="badge badge-light"><%=current_user_orders.count%></span>
             <% end %>
           </li>
           <li>
