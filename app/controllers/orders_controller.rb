@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   def index
-     @orders = Order.where("user_id":session[:user_id])
+     @orders = Order.where("user_id":current_user.id)
   end
   def new
     @order = Order.new
   end
   def create
-    @cart = Cart.find_by_user_id(session[:user_id])
+    @cart = Cart.find_by_user_id(current_user.id)
     @cart_items = CartItem.where("cart_id":@cart.id)
     @order = Order.new(order_params)
     if @order.save

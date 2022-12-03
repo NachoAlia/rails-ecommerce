@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
   # get 'items/index'
   # get 'backstore/index'
   # get 'welcome/index'
@@ -8,14 +10,26 @@ Rails.application.routes.draw do
   # get 'sessions/welcome'
 
   # get 'welcome/index'
-  resources :users, only: [:new, :create]
+  #resources :users, only: [:new, :create]
   resources :items
   resources :orders
-   get 'login', to: 'sessions#new'
-   post 'login', to: 'sessions#create'
+   #get 'login', to: 'sessions#new'
+  # post 'login', to: 'sessions#create'
    #get 'welcome', to: 'sessions#welcome'
-   delete 'logout', to:'sessions#destroy'
-   root 'sessions#new'
+
+   devise_scope :user do
+    authenticated  do
+      root to: 'welcome#index'
+      delete '/logout', to:'devise/sessions#destroy'
+
+    end
+    unauthenticated  do
+      root 'devise/sessions#new', as: 'unauthenticated_root'
+
+    end
+
+  end
+
    get 'welcome', to: 'welcome#index'
    get 'backstore', to: 'backstore#index'
    get 'items', to: 'items#index'

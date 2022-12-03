@@ -5,22 +5,23 @@
     </div>
     <div class="navbar-nav navbar-right">
       <ul class="nav navbar-nav">
-
+        <p class="notice mt-3"><%= notice %></p>
+        <p class="alert mt-3"><%= alert %></p>
         <%if logged_in?%>
-          <li>
-            <%= button_to '/orders', method: :get, class:'btn btn-lg mt-1' do %>
-              <span class="bi bi-gift"></span>
-              <span class="badge badge-light"><%=current_user_orders.count%></span>
-            <% end %>
-          </li>
-          <li>
-            <%= button_to '/cart', method: :get, class:'btn btn-lg mt-1' do %>
-              <span class="bi bi-cart-check-fill"></span>
-              <span class="badge badge-light"><%=current_cart.items.count%></span>
-            <% end %>
+        <li>
+          <%= button_to '/orders', method: :get, class:'btn btn-lg mt-1' do %>
+          <span class="bi bi-gift"></span>
+          <span class="badge badge-light"><%=current_user_orders.count%></span>
+          <% end %>
+        </li>
+        <li>
+          <%= button_to '/cart', method: :get, class:'btn btn-lg mt-1' do %>
+          <span class="bi bi-cart-check-fill"></span>
+          <span class="badge badge-light"><%=current_cart.items.count%></span>
+          <% end %>
 
-          </li>
-          <li>
+        </li>
+        <li>
           <div class="dropdown">
             <button class="btn btn-lg bi bi-person-fill dropdown-toggle mt-1 mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </button>
@@ -30,7 +31,7 @@
               <%= button_to 'logout', logout_path, method: :delete, class:'dropdown-item'%>
             </div>
 
-        </div>
+          </div>
 
         </li>
         <%end%>
