@@ -25,13 +25,14 @@ Rails.application.routes.draw do
 
     end
     unauthenticated  do
-      root 'devise/sessions#new', as: 'unauthenticated_root'
-
+      root 'welcome#guest', as: 'unauthenticated_root'
+      #root 'devise/sessions#new', as: 'unauthenticated_root'
     end
 
   end
 
    get 'welcome', to: 'welcome#index'
+   get 'welcome/guest', to: 'welcome#guest'
    get 'backstore', to: 'backstore#index'
    get 'backstore/orders', to:'backstore#orders'
    get 'items', to: 'items#index'

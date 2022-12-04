@@ -46,7 +46,9 @@ class ApplicationController < ActionController::Base
   def session_user_id
     session["warden.user.user.key"][1][0]
   end
-
+  def notGuest
+    redirect_to '/welcome' if !current_user.nil?
+  end
   # def admin
   #   redirect_to '/welcome' unless isAdmin?
   # end
