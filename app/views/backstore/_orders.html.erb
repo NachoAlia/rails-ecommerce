@@ -9,7 +9,6 @@
     <th>Option</th>
   </tr>
   <%@orders.each do |row| %>
-
     <tr>
       <td><%= row.user.firstname %></td>
       <td><%= row.user.lastname %></td>
@@ -17,7 +16,14 @@
       <td><%= row.totalPrice%></td>
       <td><%= row.stateString %></td>
       <td>
-        <%= link_to 'Cancel', order_cancel_path(:id => row.id), method: :post%>
+        <div class="dropdown">
+          <button class="btn btn-lg bi bi-gear dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color:red">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= button_to 'Approve', order_approve_path(:id => row.id), method: :post, data: {confirm: "Are you sure?"}, class:'dropdown-item'%>
+            <%= button_to 'Reject', order_reject_path(:id => row.id), method: :post, data: {confirm: "Are you sure?"}, class:'dropdown-item'%>
+          </div>
+        </div>
       </td>
     </tr>
   <% end %>

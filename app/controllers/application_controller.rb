@@ -38,10 +38,10 @@ class ApplicationController < ActionController::Base
   end
 
   def orders
-    @orders = Order.all
+    @orders = Order.all.order("id DESC")
   end
   def items
-    @items = Order.all
+    @items = Item.all
   end
   def session_user_id
     session["warden.user.user.key"][1][0]

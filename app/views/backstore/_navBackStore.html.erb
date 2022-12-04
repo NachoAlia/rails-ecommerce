@@ -5,8 +5,8 @@
     </div>
     <div class="navbar-nav navbar-right">
       <ul class="nav navbar-nav">
-        <p class="notice mt-3"><%= notice %></p>
-        <p class="alert mt-3"><%= alert %></p>
+        <p class="notice mt-3" style="color:red"><%= notice %></p>
+        <p class="alert mt-3"style="color:red"><%= alert %></p>
         <%if logged_in?%>
         <li>
           <%= button_to '/backstore/orders', method: :get, class:'btn btn-lg mt-1' do %>
@@ -23,16 +23,13 @@
         </li>
         <li>
           <div class="dropdown">
-            <button class="btn btn-lg bi bi-person-fill dropdown-toggle mt-1 mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color:white">
+            <button class="btn btn-lg bi bi-person-fill-check dropdown-toggle mt-1 mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="color:white">
             </button>
-
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <%= button_to 'Backstore', backstore_path, method: :get, class:'dropdown-item' if isAdmin?%>
               <%= button_to 'logout', logout_path, method: :delete, class:'dropdown-item'%>
             </div>
-
           </div>
-
         </li>
         <%end%>
         <li><button class="btn" name="button"></button></li>

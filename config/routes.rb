@@ -44,6 +44,8 @@ Rails.application.routes.draw do
    get 'order/new', to: 'orders#new'
    post '/order/cancel/:id', to: 'orders#cancel', as: 'order_cancel'
 
+   post '/backstore/order_approve/:id', to: 'backstore#order_approve', as: 'order_approve'
+   post '/backstore/order_reject/:id', to: 'backstore#order_reject', as: 'order_reject'
   #root 'welcome#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
