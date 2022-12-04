@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
   helper_method :logged_in?
   helper_method :isAdmin?
+  helper_method :orders
+  helper_method :items
   # def current_user
   #   User.find_by(id: session_user_id)
   # end
@@ -32,7 +34,12 @@ class ApplicationController < ActionController::Base
     return false
   end
 
-
+  def orders
+    @orders = Order.all
+  end
+  def items
+    @items = Order.all
+  end
   def session_user_id
     session["warden.user.user.key"][1][0]
   end

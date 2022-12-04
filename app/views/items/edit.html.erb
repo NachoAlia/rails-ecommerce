@@ -1,3 +1,4 @@
+<%=render 'backstore/navBackStore'%>
 <div class="container">
   <%= form_with model: @item, local:true, multipart: true, class:"form-row" do |form| %>
     <% if @item.errors.any? %>

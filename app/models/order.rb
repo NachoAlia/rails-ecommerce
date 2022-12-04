@@ -14,8 +14,10 @@ class Order < ApplicationRecord
         return "Waiting"
       when 1
         return "Approved"
-      else
+      when 2
         return "Rejected"
+      else
+        return "Canceled"
       end
     end
 end

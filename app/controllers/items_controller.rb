@@ -10,11 +10,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to '/items'
+      redirect_to '/backstore'
     else
       render 'new'
     end
-  #render plain: params[:item].inspect
   end
   def edit
     @item = findItem()
@@ -24,7 +23,7 @@ class ItemsController < ApplicationController
     @item = findItem()
 
     if @item.update(item_params)
-      redirect_to '/items'
+      redirect_to '/backstore'
     else
       render 'edit'
     end
@@ -33,11 +32,12 @@ class ItemsController < ApplicationController
   def destroy
     @item = findItem()
     @item.destroy
-    redirect_to '/items'
+    redirect_to '/backstore'
   end
 
   def show
     @item = findItem()
+    @orders = Order.all
   end
 
   def toggleAvailable

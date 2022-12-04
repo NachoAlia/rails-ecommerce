@@ -20,6 +20,17 @@ class OrdersController < ApplicationController
     end
 
   end
+  def cancel
+    @order = Order.find(params[:id])
+    if !@order.nil? and @order.state == 0
+      @order.state = 3
+      @order.save
+        flash[:notice] = "Order canceled successfully"
+    else
+      flash[:notice] = "Not canceled"
+    end
+    redirect_to '/orders'
+  end
   private
   def order_params
     params.require(:order).permit(:user_id, :address, :state)
