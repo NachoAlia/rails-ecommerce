@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # get 'welcome/index'
   #resources :users, only: [:new, :create]
   resources :items
-  #resources :orders
+  resources :orders
    #get 'login', to: 'sessions#new'
   # post 'login', to: 'sessions#create'
    #get 'welcome', to: 'sessions#welcome'
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
    get 'orders', to:'orders#index'
    get 'order/new', to: 'orders#new'
    post '/order/cancel/:id', to: 'orders#cancel', as: 'order_cancel'
+
   #root 'welcome#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

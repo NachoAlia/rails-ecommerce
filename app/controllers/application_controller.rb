@@ -33,6 +33,9 @@ class ApplicationController < ActionController::Base
     end
     return false
   end
+  def onlyAdmin!
+    redirect_to '/' unless isAdmin?
+  end
 
   def orders
     @orders = Order.all

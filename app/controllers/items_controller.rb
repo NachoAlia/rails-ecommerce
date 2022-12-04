@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :onlyAdmin!
   def index
     @items = Item.all
   end

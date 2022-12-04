@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-     @orders = Order.where("user_id":current_user.id)
+     @orders = Order.where("user_id":current_user.id).order("id DESC")
   end
   def new
     @order = Order.new
@@ -25,14 +25,28 @@ class OrdersController < ApplicationController
     if !@order.nil? and @order.state == 0
       @order.state = 3
       @order.save
-        flash[:notice] = "Order canceled successfully"
+      self.returnIfNotApproved(@order)
+      flash[:notice] = "Order canceled successfully"
     else
       flash[:notice] = "Not canceled"
     end
     redirect_to '/orders'
   end
+
+
   private
   def order_params
     params.require(:order).permit(:user_id, :address, :state)
+  end
+
+  def returnIfNotApproved(order)
+    @order_items = OrderItem.where("order_id":order.id)
+    if !@order_items.nil?
+      @order_items.each do |row|
+        item = Item.find(row.item_id)
+        item.stockAmount = item.stockAmount.to_i + row.amount.to_i
+        item.save
+      end
+    end
   end
 end
