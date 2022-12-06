@@ -32,4 +32,15 @@ class BackstoreController < ApplicationController
     end
       return false
   end
+  def returnIfNotApproved(order)
+    @order_items = OrderItem.where("order_id":order.id)
+    if !@order_items.nil?
+      @order_items.each do |row|
+        item = Item.find(row.item_id)
+        item.stockAmount = item.stockAmount.to_i + row.amount.to_i
+        item.available = 1
+        item.save
+      end
+    end
+  end
 end

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :onlyAdmin!
+  
   def index
     @items = Item.all
   end
@@ -16,13 +17,13 @@ class ItemsController < ApplicationController
       render 'new'
     end
   end
+
   def edit
     @item = findItem()
   end
 
   def update
     @item = findItem()
-
     if @item.update(item_params)
       redirect_to '/backstore'
     else

@@ -2,9 +2,11 @@ class OrdersController < ApplicationController
   def index
      @orders = Order.where("user_id":current_user.id).order("id DESC")
   end
+
   def new
     @order = Order.new
   end
+
   def create
     @cart = Cart.find_by_user_id(current_user.id)
     @cart_items = CartItem.where("cart_id":@cart.id)
@@ -20,6 +22,7 @@ class OrdersController < ApplicationController
     end
 
   end
+
   def cancel
     @order = Order.find(params[:id])
     if !@order.nil? and @order.state == 0
@@ -33,7 +36,6 @@ class OrdersController < ApplicationController
     redirect_to '/orders'
   end
 
-
   private
   def order_params
     params.require(:order).permit(:user_id, :address, :state)
@@ -45,6 +47,7 @@ class OrdersController < ApplicationController
       @order_items.each do |row|
         item = Item.find(row.item_id)
         item.stockAmount = item.stockAmount.to_i + row.amount.to_i
+        item.available = 1
         item.save
       end
     end

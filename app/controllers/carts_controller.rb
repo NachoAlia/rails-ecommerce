@@ -3,6 +3,7 @@ class CartsController < ApplicationController
     @cart = Cart.find_by_user_id(current_user.id)
     @cart_items = CartItem.where("cart_id":@cart.id)
   end
+
   def addItem
     @cart = Cart.find_by_user_id(current_user.id)
     @item = Item.find(params[:item_id])
@@ -11,6 +12,7 @@ class CartsController < ApplicationController
     @item.update(available:0) if (@item.stockAmount==0)
     redirect_to '/welcome'
   end
+
   def deleteItem
     @cart = Cart.find_by_user_id(current_user.id)
     @item = Item.find(params[:item_id])
@@ -19,6 +21,7 @@ class CartsController < ApplicationController
     @item.update(stockAmount: (@item.stockAmount.to_i + params[:cant].to_i))
     redirect_to '/cart'
   end
+
   def emptyCart
     @cart = Cart.find_by_user_id(current_user.id)
     @cart_items = CartItem.where("cart_id":@cart.id)

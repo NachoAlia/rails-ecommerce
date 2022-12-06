@@ -19,20 +19,16 @@
           <span class="bi bi-cart-check-fill"></span>
           <span class="badge badge-light"><%=current_cart.items.count%></span>
           <% end %>
-
         </li>
         <li>
           <div class="dropdown">
             <button class="btn btn-lg bi bi-person-fill dropdown-toggle mt-1 mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </button>
-
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <%= button_to 'Backstore', backstore_path, method: :get, class:'dropdown-item' if isAdmin?%>
               <%= button_to 'logout', logout_path, method: :delete, class:'dropdown-item'%>
             </div>
-
           </div>
-
         </li>
         <%end%>
         <li><button class="btn" name="button"></button></li>

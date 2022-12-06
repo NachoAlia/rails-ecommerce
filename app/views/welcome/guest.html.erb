@@ -12,22 +12,19 @@
         <%if item.available%>
         <div class="container-fluid">
           <%= form_tag '/addItem', html:{class:'form-inline'} do %>
-
-          <div class="form-row">
-            <div class="col-4">
-
-              <%= number_field_tag :cant,1, in: 1..item.stockAmount, step: 1 , class: 'form-control form-control-sm'%>
-              <%= hidden_field_tag :item_id, item.id %>
-            </div>
+            <div class="form-row">
+              <div class="col-4">
+                <%= number_field_tag :cant,1, in: 1..item.stockAmount, step: 1 , class: 'form-control form-control-sm'%>
+                <%= hidden_field_tag :item_id, item.id %>
+              </div>
             <div class="col-4 mt-1">
               <p>of: <%=item.stockAmount%></p>
             </div>
             <div class="col-1">
               <%= submit_tag 'Add', class:'btn btn-sm btn-primary' %>
             </div>
-            <% end %>
+          <% end %>
           </div>
-
         </div>
         <%else%>
           <p class="card-text"><%="Not available"%></p>
@@ -35,6 +32,5 @@
       </div>
     </div>
   </div>
-
   <% end %>
 </div>

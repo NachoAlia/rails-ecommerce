@@ -1,18 +1,12 @@
 class ApplicationController < ActionController::Base
-  #before_action :authorized
   before_action :authenticate_user!
-  #before_action :initialize_cart!
-  #before_action :admin
+
   helper_method :current_user_orders
-  #helper_method :current_user
   helper_method :current_cart
   helper_method :logged_in?
   helper_method :isAdmin?
   helper_method :orders
   helper_method :items
-  # def current_user
-  #   User.find_by(id: session_user_id)
-  # end
 
   def current_cart
     current_user.create_cart() if current_user.cart.nil?
@@ -33,6 +27,7 @@ class ApplicationController < ActionController::Base
     end
     return false
   end
+  
   def onlyAdmin!
     redirect_to '/' unless isAdmin?
   end
@@ -49,7 +44,5 @@ class ApplicationController < ActionController::Base
   def notGuest
     redirect_to '/welcome' if !current_user.nil?
   end
-  # def admin
-  #   redirect_to '/welcome' unless isAdmin?
-  # end
+
 end

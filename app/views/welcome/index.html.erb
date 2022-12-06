@@ -1,7 +1,5 @@
 <%=render 'navFrontStore'%>
 <div class="container-fluid">
-
-
 <div class="row">
   <% @items.each do |item| %>
   <div class="col-sm-6 col-md-3">
@@ -13,40 +11,31 @@
         <p class="card-text"><%="Price: #{item.priceUnit}"%></p>
         <%if item.available%>
         <div class="container-fluid">
-
-
-
-          
           <%if !current_cart.items.include?item%>
-          <%= form_tag '/addItem', html:{class:'form-inline'} do %>
-
-          <div class="form-row">
-            <div class="col-4">
-
-              <%= number_field_tag :cant,1, in: 1..item.stockAmount, step: 1 , class: 'form-control form-control-sm'%>
-              <%= hidden_field_tag :item_id, item.id %>
-            </div>
-            <div class="col-4 mt-1">
-              <p>of: <%=item.stockAmount%></p>
-            </div>
-            <div class="col-1">
-              <%= submit_tag 'Add', class:'btn btn-sm btn-primary' %>
-
-            </div>
+            <%= form_tag '/addItem', html:{class:'form-inline'} do %>
+              <div class="form-row">
+                <div class="col-4">
+                  <%= number_field_tag :cant,1, in: 1..item.stockAmount, step: 1 , class: 'form-control form-control-sm'%>
+                  <%= hidden_field_tag :item_id, item.id %>
+                </div>
+                <div class="col-4 mt-1">
+                  <p>of: <%=item.stockAmount%></p>
+                </div>
+                <div class="col-1">
+                  <%= submit_tag 'Add', class:'btn btn-sm btn-primary' %>
+                </div>
             <% end %>
-          </div>
+              </div>
           <%else%>
-          <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' %>
+            <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' %>
           <%end%>
         </div>
-
         <%else%>
           <p class="card-text"><%="Not available"%></p>
-            <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' if current_cart.items.include?item %>
+          <%= button_to 'See in cart','/cart', method: :get, class:'btn btn-sm btn-success' if current_cart.items.include?item %>
         <%end%>
       </div>
     </div>
   </div>
-
   <% end %>
 </div>
