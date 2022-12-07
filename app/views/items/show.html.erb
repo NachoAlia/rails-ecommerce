@@ -7,7 +7,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= @item.name %></h5>
       <p class="card-text"><%="Description: #{@item.description}"%></p>
-      <p class="card-text"><%="Price: #{@item.priceUnit}"%></p>
+      <p class="card-text"><%="Price: $#{@item.priceUnit}"%></p>
       <p class="card-text"><%="Available" if @item.available %></p>
       <p class="card-text"><%="Not available" if !@item.available %></p>
       <a href="#" class="btn btn-primary">Add to order</a>

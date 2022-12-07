@@ -6,9 +6,9 @@
     <div class="card" style="width: 18rem; margin-top:50px; ">
       <%= image_tag item.image_url, class:'card-image-top mx-auto', style:'height:100%; width:200px;'  if item.image_url.attached? %>
       <div class="card-body">
-        <h5 class="card-title"><%= item.name %><%= item.id %></h5>
+        <h5 class="card-title"><%= item.name %></h5>
         <p class="card-text"><%="Description: #{item.description}"%></p>
-        <p class="card-text"><%="Price: #{item.priceUnit}"%></p>
+        <p class="card-text"><%="Price: $#{item.priceUnit}"%></p>
         <%if item.available%>
         <div class="container-fluid">
           <%= form_tag '/addItem', html:{class:'form-inline'} do %>

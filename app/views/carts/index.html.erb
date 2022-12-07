@@ -26,7 +26,7 @@
       </td>
     </tr>
   <% end %>
-  <h1>Total:<%=@cart.totalPrice%></h1>
+  <h1>Total: $<%=@cart.totalPrice%></h1>
   <%if @cart.items.count>0%>
     <%= button_to 'Generate Order', '/order/new', method: :get, class:'btn btn-success'%>
     <%= button_to 'Empty Cart', '/emptyCart', method: :post, class:'btn btn-danger'%>

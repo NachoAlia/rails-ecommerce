@@ -14,7 +14,7 @@
       <td><%= current_user.firstname %></td>
       <td><%= current_user.lastname %></td>
       <td><%= row.address %></td>
-      <td><%= row.totalPrice%></td>
+      <td>$<%= row.totalPrice%></td>
       <td><%= row.stateString %></td>
       <td>
         <%= link_to 'Cancel', order_cancel_path(:id => row.id), method: :post%>
